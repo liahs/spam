@@ -1,0 +1,24 @@
+{
+  "name": "spam-detection",
+  "version": "1.0.0",
+  "description": "spam detection using natural package",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spam",
+    "js",
+    "nodejs"
+  ],
+  "author": "Shailen",
+  "license": "ISC",
+  "dependencies": {
+    "csv-reader": "^1.0.12",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "natural": "^6.5.0",
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spam Detection</title>
+    <style>
+        body {
+            font-family: 'Cascadia Code', monospace;
+            background-color: #1e1e1e;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #252526;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #4ec9b0;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #4ec9b0;
+        }
+        p {
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        form {
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #ddd;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            resize: vertical;
+            font-family: 'Cascadia Code', monospace;
+            font-size: 14px;
+            color: #ddd;
+            background-color: #333;
+        }
+        button {
+            background-color: #4ec9b0;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            font-family: 'Cascadia Code', monospace;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #3aa99e;
+            transform: scale(1.05);
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #4ec9b0;
+            font-size: 18px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>DeVerse</h1>
+        <h2>Welcome to Spam Detection</h2>
+        <p>Enter the text you want to check for spam.</p>
+        <form id="spamForm">
+            <label for="textArea">Enter your text:</label>
+            <textarea id="textArea" placeholder="Type your text here"></textarea>
+            <button type="button" onclick="checkSpam()">Check</button>
+        </form>
+        <p id="result"></p>
+    </div>
+    
+    <script>
+        async function checkSpam() {
+            const text = document.getElementById("textArea").value;
+            const resultElement = document.getElementById("result");
+            resultElement.textContent = "";
+            try {
+                const response = await fetch("http://localhost:5000/spam-check", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ text: text })
+                });
+                
+                const data = await response.json();
+                resultElement.textContent = data.isSpam ? "This is spam." : "This is not spam.";
+            } catch (error) {
+                resultElement.textContent = "Error occurred while checking.";
+            }
+        }
+    </script>
+</body>
+</html>
