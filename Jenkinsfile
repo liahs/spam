@@ -14,15 +14,6 @@ pipeline {
                 sh 'npm install'     // Install project dependencies using npm
             }
         }
-
-        stage('Build and Test') {
-            steps {
-                // Build and test your Node.js application
-               // sh 'npm run build'   // Replace with your build command
-             //   sh 'npm test'        // Replace with your test command
-            }
-        }
-
         stage('Deploy') {
             steps {
                 sh 'npm start' 
