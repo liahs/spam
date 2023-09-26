@@ -32,16 +32,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Clean up or perform any post-build tasks here
-        }
-        success {
-            // Actions to take if the build succeeds
-        }
-        failure {
-            // Actions to take if the build fails
-        }
-    }
 }
